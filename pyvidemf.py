@@ -7,7 +7,7 @@ import os
 
 vidcodec='h264_qsv'
 audiocodec='aac'
-extensions = ['avi', 'mp4', 'mkv']
+extensions = ['avi', 'mp4', 'mkv', 'wmv', 'flv', 'mov']
 
 def procesavideo(filename):
     
@@ -20,7 +20,7 @@ def procesavideo(filename):
                 stdout=sp.PIPE, stderr=sp.PIPE, universal_newlines=True)
     results = json.loads(out.stdout)
     
-    print(filename)
+    print("----------------------",filename)
     for stream in results['streams']:
         if (stream['codec_type']=='video'):
             ancho=int(stream['coded_width'])
@@ -56,8 +56,8 @@ def procesavideo(filename):
             else:
                 codificaaudio=' -c:a '+audiocodec+' -b:a 128k'
             print(codificaaudio)
-    print(F'ffmpeg -i "{filename}"  {codificavideo} {codificaaudio} "salida\{archivo}.mp4"')
-    #os.system(F'ffmpeg -i "{filename}" {codificavideo} {codificaaudio} "salida\{archivo}.mp4"')
+    print(F'ffmpeg -i "{filename}" {codificavideo} {codificaaudio} "salida\{archivo}.mp4"')
+    os.system(F'ffmpeg -i "{filename}" {codificavideo} {codificaaudio} "salida\{archivo}.mp4"')
     
 def main():
     targets = []
