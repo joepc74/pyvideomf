@@ -72,5 +72,3 @@ def main():
         procesavideo(d)
         
 main()
-#procesavideo('Hot Shot Cut.avi')
-#procesavideo('Bounce by Juan Luis Rubiales.mp4')
